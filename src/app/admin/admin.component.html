@@ -1,0 +1,104 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/index">Tutorías</a
+    ><button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Acerca de</a>
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo === 'Estudiante'"
+          class="nav-item"
+        >
+          <a
+            *ngIf="userActual && userActual.tutor"
+            class="nav-link"
+            routerLink="/request"
+            >Solicitar</a
+          >
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo !== 'Admin' && userActual.tutor"
+          class="nav-item"
+        >
+          <a class="nav-link" routerLink="/calendar">Calendario</a>
+        </li>
+
+        <li *ngIf="!userActual" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesion</a>
+        </li>
+        <li *ngIf="userActual" class="nav-item">
+          <a class="nav-link" routerLink="/profile">Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="mt-4 container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card p-4">
+        <div class="card-body">
+          <h5 class="card-title text-uppercase mb-0">
+            Solicitudes de tutorías
+          </h5>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">Materia</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Hora</th>
+                <th scope="col">Día</th>
+                <th scope="col">Mes</th>
+                <th scope="col">Opciones</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let tutoria of tutorias; let i = index">
+              <tr
+                *ngIf="
+                  tutoria.profesor?.id === userActual.id &&
+                  tutoria.estado === 'Pendiente'
+                "
+              >
+                <td>{{ tutoria.materia }}</td>
+                <td>{{ tutoria.estudiante?.nombres }}</td>
+                <td>{{ tutoria.hora }}</td>
+                <td>{{ tutoria.dia }}</td>
+                <td>{{ tutoria.mes }}</td>
+                <td>
+                  <button
+                    class="btn btn-danger"
+                    (click)="rechazarTutoria(tutoria.id!)"
+                  >
+                    Rechazar
+                  </button>
+                  &nbsp;
+                  <button
+                    (click)="aceptarTutoria(tutoria.id!)"
+                    class="btn btn-success"
+                  >
+                    Aceptar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

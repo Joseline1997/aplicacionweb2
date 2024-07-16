@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/index">Tutorías</a
+    ><button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Acerca de</a>
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo === 'Estudiante'"
+          class="nav-item"
+        >
+          <a
+            *ngIf="userActual && userActual.tutor"
+            class="nav-link"
+            routerLink="/request"
+            >Solicitar</a
+          >
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo !== 'Admin' && userActual.tutor"
+          class="nav-item"
+        >
+          <a class="nav-link" routerLink="/calendar">Calendario</a>
+        </li>
+
+        <li *ngIf="!userActual" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesion</a>
+        </li>
+        <li *ngIf="userActual" class="nav-item">
+          <a class="nav-link" routerLink="/profile">Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="main-body">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="default_user.png"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{ userActual.nombres }}</h4>
+                <p class="text-secondary mb-1">{{ userActual.tipo }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Nombre completo</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ userActual.nombres }} {{ userActual.apellidos }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ userActual.correo }}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">ci</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{ userActual.ci }}</div>
+            </div>
+            <hr />
+            <h3 *ngIf="!userActual.tutor">No tiene tutor asignado aún</h3>
+            <div *ngIf="userActual.tutor" class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Tutor</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{ userActual.tutor.nombres }} {{ userActual.tutor.apellidos }}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-12">
+                <a
+                  *ngIf="userActual.tipo === 'Admin'"
+                  class="btn me-3 btn-primary float-start"
+                  routerLink="/asign"
+                  >Asignar</a
+                >
+                <a
+                  *ngIf="userActual.tipo === 'Profesor'"
+                  class="btn me-3 btn-primary float-start"
+                  routerLink="/admin"
+                  >Solicitudes</a
+                >
+                <a
+                  *ngIf="userActual.tipo === 'Profesor'"
+                  class="btn btn-info float-start"
+                  routerLink="/record"
+                  >Historial</a
+                >
+                <a class="btn btn-danger float-end" (click)="logout()"
+                  >Cerrar sesión</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

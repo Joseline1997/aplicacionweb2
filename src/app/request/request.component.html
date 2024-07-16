@@ -1,0 +1,158 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/index">Tutorías</a
+    ><button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Acerca de</a>
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo === 'Estudiante'"
+          class="nav-item"
+        >
+          <a
+            *ngIf="userActual && userActual.tutor"
+            class="nav-link"
+            routerLink="/request"
+            >Solicitar</a
+          >
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo !== 'Admin' && userActual.tutor"
+          class="nav-item"
+        >
+          <a class="nav-link" routerLink="/calendar">Calendario</a>
+        </li>
+
+        <li *ngIf="!userActual" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesion</a>
+        </li>
+        <li *ngIf="userActual" class="nav-item">
+          <a class="nav-link" routerLink="/profile">Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="container">
+  <form
+    (ngSubmit)="onSubmit()"
+    [formGroup]="requestForm"
+    class="rounded border-secondary"
+  >
+    <h2 class="text-center">Solicitud de tutoría</h2>
+    <div class="form-group mb-3">
+      <div class="row">
+        <div class="col-sm-12 col-md-12">
+          <div class="row">
+            <div class="col-md-3">
+              <label for="form-control">Materia:</label>
+              <select
+                formControlName="materia"
+                class="form-select display-inline-block"
+              >
+                <optgroup label="Materia">
+                  <option value="APLICACIONES WEB I	">APLICACIONES WEB I</option>
+                  <option value="REDES DE COMPUTADORAS">
+                    REDES DE COMPUTADORAS
+                  </option>
+                  <option value="MINERÍA DE DATOS">MINERÍA DE DATOS</option>
+                  <option value="INGENIERÍA DE SOFTWARE II">
+                    INGENIERÍA DE SOFTWARE II
+                  </option>
+                  <option
+                    value="GESTIÓN DE PROYECTOS DE TECNOLOGÍAS DE LA INFORMACIÓN"
+                  >
+                    GESTIÓN DE PROYECTOS DE TECNOLOGÍAS DE LA INFORMACIÓN
+                  </option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="form-control">Mes:</label>
+              <select
+                formControlName="mes"
+                class="form-select display-inline-block"
+              >
+                <optgroup label="Mes">
+                  <option value="Enero">Enero</option>
+                  <option value="Febrero">Febrero</option>
+                  <option value="Marzo">Marzo</option>
+                  <option value="Abril">Abril</option>
+                  <option value="Mayo">Mayo</option>
+                  <option value="Junio">Junio</option>
+                  <option value="Julio">Julio</option>
+                  <option value="Agosto">Agosto</option>
+                  <option value="Septiembre">Septiembre</option>
+                  <option value="Octubre">Octubre</option>
+                  <option value="Noviembre">Noviembre</option>
+                  <option value="Diciembre">Diciembre</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label for="form-control">Día:</label>
+              <select
+                formControlName="dia"
+                class="form-select display-inline-block"
+              >
+                <optgroup label="Día">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="form-control">Hora</label>
+              <input formControlName="hora" class="form-control" type="time" />
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="mt-4 btn btn-primary">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

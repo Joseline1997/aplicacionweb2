@@ -1,0 +1,24 @@
+/* Estilos para las filas impares y pares de la tabla */
+.row-striped:nth-of-type(odd) {
+    background-color: #efefef; /* Fondo gris claro para las filas impares */
+    border-left: 10px #cd3333 solid; /* Borde izquierdo rojo */
+  }
+  
+  .row-striped:nth-of-type(even) {
+    background-color: #ffffff; /* Fondo blanco para las filas pares */
+    border-left: 15px #efefef solid; /* Borde izquierdo gris claro */
+  }
+  
+  .row-striped {
+    padding: 15px 0; /* Espaciado interno vertical de 15px */
+    margin-top: 15px; /* Margen superior de 15px */
+  }
+  
+  /* Estilos para los indicadores de fecha */
+  .date-green {
+    background-color: #cd3333; /* Fondo rojo para las fechas */
+  }
+  
+  .badge-grey {
+    background-color: #efefef; /* Fondo gris claro para las etiquetas */
+  }

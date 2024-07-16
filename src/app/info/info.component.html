@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/index">Tutorías</a
+    ><button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Acerca de</a>
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo === 'Estudiante'"
+          class="nav-item"
+        >
+          <a
+            *ngIf="userActual && userActual.tutor"
+            class="nav-link"
+            routerLink="/request"
+            >Solicitar</a
+          >
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo !== 'Admin' && userActual.tutor"
+          class="nav-item"
+        >
+          <a class="nav-link" routerLink="/calendar">Calendario</a>
+        </li>
+
+        <li *ngIf="!userActual" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesion</a>
+        </li>
+        <li *ngIf="userActual" class="nav-item">
+          <a class="nav-link" routerLink="/profile">Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="clean-block clean-info" style="background: #ffffff">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-8" style="margin-top: 73px">
+        <h1
+          style="
+            font-weight: 600;
+            color: rgb(136, 137, 139);
+            font-family: Poppins, sans-serif;
+          "
+        >
+          Tutorías de titulación de la ULEAM
+        </h1>
+        <div class="getting-started-info">
+          <p style="font-family: Poppins, sans-serif">
+            Las tutorías de titulación son un acompañamiento académico que las
+            universidades brindan a los estudiantes que se encuentran en el
+            proceso de realización de su trabajo de grado o tesis para optar por
+            su título profesional. Estas tutorías consisten en reuniones
+            periódicas entre el estudiante y un profesor tutor asignado, quien
+            lo guía y asesora en las diferentes etapas del desarrollo de su
+            trabajo de titulación. <br />
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4" style="margin-top: 73px; padding-right: 0px">
+        <img src="/logo.png" style="width: 90%" />
+      </div>
+    </div>
+  </div>
+</section>

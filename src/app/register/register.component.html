@@ -1,0 +1,135 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand"  routerLink="/index">Tutorías</a
+    ><button
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarResponsive"
+      class="navbar-toggler navbar-toggler-right"
+      type="button"
+      aria-controls="navbarResponsive"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto text-uppercase">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">Acerca de</a>
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo === 'Estudiante'"
+          class="nav-item"
+        >
+          <a
+            *ngIf="userActual && userActual.tutor"
+            class="nav-link"
+            routerLink="/request"
+            >Solicitar</a
+          >
+        </li>
+        <li
+          *ngIf="userActual && userActual.tipo !== 'Admin' && userActual.tutor"
+          class="nav-item"
+        >
+          <a class="nav-link" routerLink="/calendar">Calendario</a>
+        </li>
+
+        <li *ngIf="!userActual" class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesion</a>
+        </li>
+        <li *ngIf="userActual" class="nav-item">
+          <a class="nav-link" routerLink="/profile">Mi perfil</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<section class="position-relative py-4 py-xl-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-8 col-xl-6 text-center mx-auto">
+        <h2>Registrarse</h2>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-6 col-xl-4">
+        <div class="card mb-5">
+          <div class="card-body d-flex flex-column align-items-center">
+            <form
+              class="text-center"
+              [formGroup]="registerForm"
+              (submit)="onSubmit()"
+            >
+              <div class="mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="names"
+                  placeholder="Nombres"
+                  formControlName="nombres"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  class="form-control"
+                  type="text"
+                  name="lnames"
+                  placeholder="Apellidos"
+                  formControlName="apellidos"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  class="form-control"
+                  type="number"
+                  name="ci"
+                  placeholder="Número de cédula"
+                  formControlName="ci"
+                />
+              </div>
+              <div class="my-3">
+                <input
+                  class="form-control"
+                  type="email"
+                  name="email"
+                  placeholder="Correo institucional"
+                  formControlName="correo"
+                />
+              </div>
+
+              <div class="mb-3">
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  formControlName="contraseña"
+                />
+              </div>
+              <div class="mb-3">
+                <input
+                  class="form-control"
+                  type="password"
+                  name="password"
+                  placeholder="Repetir contraseña"
+                  formControlName="contraseña2"
+                />
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary d-block w-100" type="submit">
+                  Registrarse
+                </button>
+              </div>
+              <p class="text-muted">
+                Ya tienes una cuenta?&nbsp;<a routerLink="/login"
+                  >Inicia sesión</a
+                >
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
